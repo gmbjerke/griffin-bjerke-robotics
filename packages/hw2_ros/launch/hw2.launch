@@ -1,0 +1,3 @@
+<launch>
+  <node name="hw2" pkg="hw2_ros" type="hw2.py" output="screen"/></node>
+</launch>
