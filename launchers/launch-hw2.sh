@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HW_PACKAGE="hw2_ros"
-HW_LAUNCH="hw2.launch"
+HW_PACKAGE="hw2_package"
+HW_LAUNCH="homework2.launch"
 
 source /environment.sh
 
