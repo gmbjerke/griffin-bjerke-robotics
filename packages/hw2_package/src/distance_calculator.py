@@ -26,7 +26,10 @@ class DistanceCalculator:
 		
 if __name__ == '__main__':
 	try:
-		dc = DistanceCalculator()
+		DistanceCalculator()
+		rate = rospy.Rate(10)
 		rospy.spin()
+		while not rospy.is_shutdown():
+			rate.sleep()
 	except rospy.ROSInterruptException:
 		pass
