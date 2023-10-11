@@ -1,5 +1,5 @@
 <launch>
-	<include file="/eece5560/packages/turtlesim_helper/launch/turtlesim.launch"/>
+	<include file="$(find turtlesim_helper)/launch/turtlesim.launch"/>
 	<node name="publisher" pkg="hw2_package" type="homework2.py" output="screen">
 	</node>
 </launch>
