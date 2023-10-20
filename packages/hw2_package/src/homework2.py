@@ -7,7 +7,7 @@ from std_msgs.msg import String
 def publisher():
 	rospy.init_node('publisher', anonymous=True)
 	pub = rospy.Publisher('chatter', String, queue_size=10)
-	rate = rospy.Rate(10)
+	rate = rospy.Rate(0.1)
 	
 	while not rospy.is_shutdown():
 		data = "Hello world is this working please. %s" % rospy.get_time()

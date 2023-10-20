@@ -3,33 +3,28 @@
 import rospy
 from turtlesim.msg import Pose
 from turtlesim_helper.msg import UnitsLabelled
+import math
 
 class DistanceCalculator:
 	def __init__(self):
-		rospy.init_node('distance_calculator')
-		
-		self.distance_pub = rospy.Publisher('distance_traveled', UnitsLabelled, queue_size=10)
-		self.prev_pose = None
-		
-		rospy.Subscriber('turtle1/pose', Pose, self.pose_callback)
+		self.distance = 0
+		self.prev_x = 0
+		self.prev_y = 0
+		self.distance_msg = UnitsLabelled()
+		self.distance_msg.units = "meters"
+		rospy.Subscriber('/turtle1/pose', Pose, self.pose_callback)
+		self.distance_units = rospy.Publisher('distance_traveled', UnitsLabelled, queue_size=10)
+		self.distance_units.publish(self.distance_msg)
 		
 	def pose_callback(self, data):
-		if self.prev_pose is not None:
-			distance = ((data.x - self.prev_pose.x)**2 + (data.y - self.prev_pose.y)**2)**0.5
-			
-			distance_msg = UnitsLabelled()
-			distance_msg.value = distance
-			distance_msg.units = "meters"
-			self.distance_pub.publish(distance_msg)
-			
-			self.prev_pose = data
+		self.distance = ((data.x - self.prev_x)**2 + (data.y - self.prev_y)**2)**0.5
+		self.prev_x = data.x
+		self.prev_y = data.y
+		
+		self.distance_msg.value += self.distance
+		self.distance_units.publish(self.distance_msg)
 		
 if __name__ == '__main__':
-	try:
-		DistanceCalculator()
-		rate = rospy.Rate(10)
-		rospy.spin()
-		while not rospy.is_shutdown():
-			rate.sleep()
-	except rospy.ROSInterruptException:
-		pass
+	rospy.init_node('DistanceCalculator')
+	DistanceCalculator()
+	rospy.spin()
