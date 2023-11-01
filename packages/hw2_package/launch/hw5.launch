@@ -1,0 +1,4 @@
+<launch>
+	<node name="hw5" pkg="hw2_package" type="hw5.py" />
+</launch>
+

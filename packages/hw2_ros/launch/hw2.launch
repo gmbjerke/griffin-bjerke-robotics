@@ -1,6 +1,0 @@
-<launch>
-	<include file ="turtlesim_helper/launch/turtlesim.launch">
-	</node>
-	<node pkg="launch" type="hw2.py" name="Homework2">
-<launch>
-
