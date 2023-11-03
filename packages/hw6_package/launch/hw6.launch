@@ -1,0 +1,7 @@
+<launch>
+	<param name="/odom_ready" type="str" value="ready" />
+	<param name="/output_to_file" type="str" value="true"/>
+	<include file="$(find odometry_hw)/launch/odom_hw.launch"/>
+	<node name="hw6" pkg="hw6_package" type="hw6.py" output="screen"/>
+	
+</launch>
