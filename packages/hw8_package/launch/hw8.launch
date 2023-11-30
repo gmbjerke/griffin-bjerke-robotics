@@ -1,0 +1,12 @@
+<launch>
+	<arg name="index" default="0" doc="Index of image to publish"/>
+	<node name="hw7" pkg="hw7_package" type="hw7.py"/>
+	<node name="hw8" pkg="hw8_package" type="hw8.py"/>
+	<node name="image_pub" pkg="image_processing_hw" type="image_pub_all.py" args="$(find image_processing_hw)/sample_images/image$(arg index).png" />
+	<node pkg="rqt_image_view" type="rqt_image_view" name="image_cropped" args="/image_cropped" />
+	<node pkg="rqt_image_view" type="rqt_image_view" name="image_lines_yellow" args="/image_lines_yellow" />
+	<node pkg="rqt_image_view" type="rqt_image_view" name="image_lines_white" args="/image_lines_white" />
+	<node pkg="rqt_image_view" type="rqt_image_view" name="image_canny" args="/image_canny" />
+	<node pkg="rqt_image_view" type="rqt_image_view" name="image_lines_all" args="/image_lines_all" />
+</launch>
+
