@@ -1,0 +1,9 @@
+<launch>
+	<node pkg="controls_hw" name="vehicle_dynamics" type="vehicle_dynamics.py" />
+	<node pkg="controls_hw" name="controls_graph" type="controls_graph.py" />
+	
+	<param name="/controller_ready" type="str" value="false" />
+	<node name="Hw9" pkg="hw9_package" type="pid_controller.py" />
+	
+</launch>
+
